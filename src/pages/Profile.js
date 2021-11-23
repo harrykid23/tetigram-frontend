@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router";
+import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import userContext from "../contexts/userContext";
 
@@ -16,11 +16,14 @@ const Profile = ({Navbar})=>{
   const [person, setPerson] = useState({})
   const [postPerson, setPostPerson] = useState([])
   useEffect(()=>{
+    if(params!==person._id){
+      setPostShown({})
+    }
     const tempPerson = userList.find(item=>item.username===params.username);
     if(tempPerson){
       setPerson(tempPerson)
     }
-  }, [userList])
+  }, [userList, params])
 
   useEffect(()=>{
     const tempPostPerson = postList.filter(post=>post.account_id===person._id)

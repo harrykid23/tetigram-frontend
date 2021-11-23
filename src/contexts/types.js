@@ -1,0 +1,9 @@
+export const USER_CREATED = 'USER_CREATED';
+export const USER_LOGIN = 'USER_LOGIN';
+export const USER_LOADED = 'USER_LOADED';
+export const USER_LOGOUT = 'USER_LOGOUT';
+export const POST_SUCCESS = 'POST_SUCCESS';
+export const POST_LOADED = 'POST_LOADED';
+export const USER_LIST_LOADED = 'USER_LIST_LOADED';
+export const COMMENT_LOADED = 'COMMENT_LOADED';
+export const COMMENT_SUCCESS = 'COMMENT_SUCCESS';

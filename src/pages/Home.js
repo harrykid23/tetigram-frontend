@@ -1,6 +1,5 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { useState } from "react/cjs/react.development";
 import userContext from "../contexts/userContext";
 
 const Home = ({Navbar})=>{

@@ -1,7 +1,6 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
-import { useState } from "react/cjs/react.development";
 import userContext from "../contexts/userContext";
 
 const Profile = ({Navbar})=>{

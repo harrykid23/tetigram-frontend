@@ -15,7 +15,7 @@ const Signup = ()=>{
     return {
       value : formSignup[name],
       onChange : (e)=>{
-        console.log(formSignup)
+        // console.log(formSignup)
         setFormSignup(
           {
             ...formSignup,
@@ -65,7 +65,7 @@ const Signup = ()=>{
             <input
               accept="image/*"
               onChange={(e)=>{
-                console.log(e.target.files[0]);
+                // console.log(e.target.files[0]);
                 setSelectedFile(e.target.files[0]);
               }}
               className="w-auto my-3 rounded-xl border-2 border-gray-300 px-4 py-2 focus:outline-none text-lg" type="file" required/>

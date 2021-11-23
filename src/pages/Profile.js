@@ -53,7 +53,7 @@ const Profile = ({Navbar})=>{
 
   const Post = ({item})=>{
     const date = new Date(item.time)
-    const dateString = date.getDate()+" "+ monthNames[date.getMonth()-1] + " " + date.getFullYear();
+    const dateString = date.getDate()+" "+ monthNames[date.getMonth()] + " " + date.getFullYear();
 
     const commentPost = commentList.filter(comment=>comment.post_id===item._id)
 

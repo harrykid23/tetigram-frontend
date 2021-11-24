@@ -6,9 +6,11 @@ module.exports = {
       height: {
         '80vh' : '80vh',
         '60vh' : '60vh',
+        '40vh' : '40vh',
       },
       width: {
         '30vw' : '30vw',
+        '40vh' : '40vh',
         '11/24' : '45.833333%'
       },
     },

@@ -1,10 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import userContext from "../contexts/userContext";
 
 const Profile = ({Navbar})=>{
   const params = useParams();
+  const navigate = useNavigate();
   const { host, loadUser, getAllPost, getAllUser, getAllComment, postComment, user, postList, userList, commentList } = useContext(userContext);
   useEffect(()=>{
     loadUser();
@@ -16,12 +16,14 @@ const Profile = ({Navbar})=>{
   const [person, setPerson] = useState({})
   const [postPerson, setPostPerson] = useState([])
   useEffect(()=>{
-    if(params!==person._id){
+    if(params!==person.username){
       setPostShown({})
     }
     const tempPerson = userList.find(item=>item.username===params.username);
     if(tempPerson){
       setPerson(tempPerson)
+    }else if(userList.length){
+      navigate('/');
     }
   }, [userList, params])
 
@@ -141,20 +143,30 @@ const Profile = ({Navbar})=>{
       <Navbar/>
       
       <div className="w-full flex flex-col items-center mt-16">
-        <div className="w-2/3 flex flex-row items-center">
-          <img src={host+person.profile_pic} alt="profile_pic" className="w-40 h-40 object-cover rounded-full"/>
-          <div className="flex flex-col items-start ml-16">
-            <h3 className="font-segoe font-bold text-3xl ml-3 pt-2">{person.username}</h3>
-            <h3 className="font-segoe text-2xl ml-3 pt-2 text-left">{person.bio}</h3>
-            <h3 className="font-segoe text-xl ml-3 pt-2 text-left">
-              <b>
-                {postPerson.length}
-              </b> posts</h3>
-          </div>
-        </div>
-        <div className="w-2/3 grid grid-cols-4 gap-5 p-5 bg-white rounded-xl mt-16">
-          <PostList />
-        </div>
+        {!(person._id)?
+          <div
+            className="animate-spin rounded-full h-40vh w-40vh border-b-2 border-gray-900"
+          ></div>
+          :
+          <>
+            <div className="w-2/3 flex flex-row items-center">
+              <img src={host+person.profile_pic} alt="profile_pic" className="w-40 h-40 object-cover rounded-full"/>
+              <div className="flex flex-col items-start ml-16">
+                <h3 className="font-segoe font-bold text-3xl ml-3 pt-2">{person.username}</h3>
+                <h3 className="font-segoe text-2xl ml-3 pt-2 text-left">{person.bio}</h3>
+                <h3 className="font-segoe text-xl ml-3 pt-2 text-left">
+                  <b>
+                    {postPerson.length}
+                  </b> posts</h3>
+              </div>
+            </div>
+            <div className="w-2/3 grid grid-cols-4 gap-5 p-5 bg-white rounded-xl mt-16">
+              {postPerson.length ? <PostList /> : <p className="text-center col-span-4">No posts</p>}
+            </div>
+          </>
+        }
+        
+        
         
       </div>
     </div>
